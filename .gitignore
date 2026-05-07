@@ -1,0 +1,22 @@
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+.venv/
+venv/
+
+# Environment / secrets
+.env
+*.key
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Snowflake connection configs (never commit credentials)
+connections.toml

@@ -1,0 +1,225 @@
+# Drug Safety Co-Pilot — Semantic Model for Cortex Analyst
+# Validated with: cortex reflect semantic_model.yaml --target-schema PHARMACOVIGILANCE.D_GOLD
+#
+# This model enables natural language queries over pharmacovigilance data:
+#   - "What are the top drugs by AE count?"
+#   - "Show monthly trend of severe events"
+#   - "Fatal outcome rate by drug class"
+
+name: PV_ANALYST_MODEL
+description: >
+  Pharmacovigilance signal detection and adverse event analysis model.
+  Covers adverse event reports, patient demographics, and drug information
+  from the Drug Safety Co-Pilot system.
+
+tables:
+  - name: FACT_ADVERSE_EVENT
+    base_table:
+      database: PHARMACOVIGILANCE
+      schema: D_SILVER
+      table: FACT_ADVERSE_EVENT
+    description: >
+      Core fact table containing one row per adverse event case report.
+      Each row represents a single adverse event reported for a patient taking a specific drug.
+    dimensions:
+      - name: case_id
+        expr: CASE_ID
+        description: Unique case identifier in FAERS format (e.g., US-PFIZER-2024-001234)
+        unique: true
+      - name: drug_name
+        expr: DRUG_NAME
+        description: Name of the suspect drug (e.g., Metformin, Pembrolizumab, Adalimumab)
+      - name: drug_dose
+        expr: DRUG_DOSE
+        description: Drug dose with unit (e.g., 500mg, 200mg, 40mg)
+      - name: drug_route
+        expr: DRUG_ROUTE
+        description: Route of administration (oral, IV, subcutaneous, IM)
+      - name: ae_term
+        expr: AE_TERM
+        description: MedDRA preferred term for the adverse event (e.g., Hepatocellular injury, Myocardial infarction)
+      - name: ae_soc_class
+        expr: AE_SOC_CLASS
+        description: System Organ Class category from AI classification (e.g., Hepatotoxicity, Cardiotoxicity, Nephrotoxicity)
+      - name: ae_severity
+        expr: AE_SEVERITY
+        description: Severity level of the adverse event (mild, moderate, severe)
+      - name: ae_seriousness
+        expr: AE_SERIOUSNESS
+        description: Seriousness criteria (Non-serious, Hospitalization, Life-threatening, Disability, Death, Required Intervention)
+      - name: ae_outcome
+        expr: AE_OUTCOME
+        description: Patient outcome after the adverse event (Recovered, Recovering, Not recovered, Fatal, Unknown)
+      - name: reporter_type
+        expr: REPORTER_TYPE
+        description: Who reported the event (Physician, Pharmacist, Consumer/Patient, Nurse, Other HCP)
+      - name: country
+        expr: COUNTRY
+        description: Country where the event was reported (US, UK, Germany, Japan, France, Canada, Australia)
+      - name: manufacturer
+        expr: MANUFACTURER
+        description: Drug manufacturer (Pfizer, Novartis, AstraZeneca, Merck, Roche, AbbVie, etc.)
+    time_dimensions:
+      - name: report_date
+        expr: REPORT_DATE
+        description: Date the adverse event was reported to the authority
+        data_type: DATE
+      - name: ae_onset_date
+        expr: AE_ONSET_DATE
+        description: Date the adverse event first manifested
+        data_type: DATE
+      - name: drug_start_date
+        expr: DRUG_START_DATE
+        description: Date the patient started taking the suspect drug
+        data_type: DATE
+    measures:
+      - name: total_cases
+        expr: COUNT(DISTINCT CASE_ID)
+        description: Total number of unique adverse event cases
+      - name: total_patients
+        expr: COUNT(DISTINCT PATIENT_ID)
+        description: Total number of unique patients with adverse events
+      - name: fatal_cases
+        expr: COUNT(CASE WHEN AE_OUTCOME = 'Fatal' THEN 1 END)
+        description: Number of cases with fatal outcome
+      - name: severe_cases
+        expr: COUNT(CASE WHEN LOWER(AE_SEVERITY) = 'severe' THEN 1 END)
+        description: Number of cases classified as severe
+      - name: serious_cases
+        expr: COUNT(CASE WHEN AE_SERIOUSNESS != 'Non-serious' THEN 1 END)
+        description: Number of serious cases (any seriousness criteria met)
+      - name: fatal_rate
+        expr: COUNT(CASE WHEN AE_OUTCOME = 'Fatal' THEN 1 END) * 100.0 / NULLIF(COUNT(*), 0)
+        description: Percentage of cases with fatal outcome
+      - name: avg_onset_days
+        expr: AVG(ONSET_DAYS)
+        description: Average number of days from drug start to adverse event onset
+      - name: median_onset_days
+        expr: MEDIAN(ONSET_DAYS)
+        description: Median number of days from drug start to adverse event onset
+
+  - name: DIM_PATIENT
+    base_table:
+      database: PHARMACOVIGILANCE
+      schema: D_SILVER
+      table: DIM_PATIENT
+    description: >
+      Patient dimension containing demographic information.
+      One row per unique patient.
+    dimensions:
+      - name: patient_id
+        expr: PATIENT_ID
+        description: Unique patient identifier
+        unique: true
+      - name: patient_age
+        expr: PATIENT_AGE
+        description: Patient age at time of adverse event report (years)
+      - name: patient_sex
+        expr: PATIENT_SEX
+        description: Patient biological sex (Male, Female)
+      - name: country
+        expr: COUNTRY
+        description: Patient country of residence
+    measures:
+      - name: avg_patient_age
+        expr: AVG(PATIENT_AGE)
+        description: Average patient age at time of report
+      - name: patient_count
+        expr: COUNT(DISTINCT PATIENT_ID)
+        description: Number of unique patients
+
+  - name: DIM_DRUG
+    base_table:
+      database: PHARMACOVIGILANCE
+      schema: D_SILVER
+      table: DIM_DRUG
+    description: >
+      Drug dimension containing medication details.
+      One row per unique drug + dose + route + indication combination.
+    dimensions:
+      - name: drug_name
+        expr: DRUG_NAME
+        description: Name of the medication
+      - name: drug_dose
+        expr: DRUG_DOSE
+        description: Prescribed dose
+      - name: drug_route
+        expr: DRUG_ROUTE
+        description: Route of administration
+      - name: indication
+        expr: INDICATION
+        description: Medical condition the drug was prescribed for
+      - name: manufacturer
+        expr: MANUFACTURER
+        description: Pharmaceutical manufacturer
+
+relationships:
+  - name: patient_events
+    left_table: FACT_ADVERSE_EVENT
+    right_table: DIM_PATIENT
+    join_type: left
+    relationship_type: many_to_one
+    on:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: drug_events
+    left_table: FACT_ADVERSE_EVENT
+    right_table: DIM_DRUG
+    join_type: left
+    relationship_type: many_to_one
+    on:
+      - left_column: DRUG_NAME
+        right_column: DRUG_NAME
+      - left_column: DRUG_DOSE
+        right_column: DRUG_DOSE
+      - left_column: DRUG_ROUTE
+        right_column: DRUG_ROUTE
+
+verified_queries:
+  - name: top_drugs_by_ae_count
+    question: What are the top 5 drugs by total adverse event count?
+    sql: >
+      SELECT DRUG_NAME, COUNT(DISTINCT CASE_ID) AS total_cases
+      FROM PHARMACOVIGILANCE.D_SILVER.FACT_ADVERSE_EVENT
+      GROUP BY DRUG_NAME
+      ORDER BY total_cases DESC
+      LIMIT 5
+  - name: monthly_severe_trend
+    question: Show monthly trend of severe adverse events
+    sql: >
+      SELECT DATE_TRUNC('MONTH', REPORT_DATE) AS month,
+             COUNT(CASE WHEN LOWER(AE_SEVERITY) = 'severe' THEN 1 END) AS severe_cases,
+             COUNT(*) AS total_cases
+      FROM PHARMACOVIGILANCE.D_SILVER.FACT_ADVERSE_EVENT
+      GROUP BY month
+      ORDER BY month
+  - name: fatal_rate_by_drug
+    question: Which drugs have the highest fatal outcome rate?
+    sql: >
+      SELECT DRUG_NAME,
+             COUNT(*) AS total_cases,
+             COUNT(CASE WHEN AE_OUTCOME = 'Fatal' THEN 1 END) AS fatal_cases,
+             ROUND(COUNT(CASE WHEN AE_OUTCOME = 'Fatal' THEN 1 END) * 100.0 / COUNT(*), 2) AS fatal_rate_pct
+      FROM PHARMACOVIGILANCE.D_SILVER.FACT_ADVERSE_EVENT
+      GROUP BY DRUG_NAME
+      HAVING COUNT(*) >= 5
+      ORDER BY fatal_rate_pct DESC
+  - name: soc_class_distribution
+    question: What is the distribution of adverse events by system organ class?
+    sql: >
+      SELECT AE_SOC_CLASS, COUNT(*) AS case_count,
+             ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(), 1) AS pct
+      FROM PHARMACOVIGILANCE.D_SILVER.FACT_ADVERSE_EVENT
+      GROUP BY AE_SOC_CLASS
+      ORDER BY case_count DESC
+  - name: avg_onset_by_drug
+    question: What is the average time to onset for each drug?
+    sql: >
+      SELECT DRUG_NAME, 
+             ROUND(AVG(ONSET_DAYS), 1) AS avg_onset_days,
+             ROUND(MEDIAN(ONSET_DAYS), 1) AS median_onset_days,
+             COUNT(*) AS cases
+      FROM PHARMACOVIGILANCE.D_SILVER.FACT_ADVERSE_EVENT
+      WHERE ONSET_DAYS IS NOT NULL
+      GROUP BY DRUG_NAME
+      ORDER BY avg_onset_days DESC

@@ -1,0 +1,92 @@
+/*
+ * Drug Safety Co-Pilot — Phase 0: Account Setup & Foundation
+ * 
+ * Prerequisites: ACCOUNTADMIN role, pv_trial connection active
+ * 
+ * This script creates:
+ *   - Cross-region inference setting
+ *   - PHARMACOVIGILANCE database with medallion architecture schemas
+ *   - PV_WH warehouse
+ *   - RBAC roles with proper grants
+ */
+
+-- ============================================================
+-- Step 0.1: Enable Cross-Region Inference
+-- Required for Cortex AI model access across regions
+-- ============================================================
+ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'ANY_REGION';
+
+-- ============================================================
+-- Step 0.2: Create Database & Schema Structure
+-- Medallion architecture: RAW → BRONZE → SILVER → GOLD
+-- ============================================================
+CREATE DATABASE IF NOT EXISTS PHARMACOVIGILANCE;
+
+CREATE SCHEMA IF NOT EXISTS PHARMACOVIGILANCE.D_RAW;
+CREATE SCHEMA IF NOT EXISTS PHARMACOVIGILANCE.D_BRONZE;
+CREATE SCHEMA IF NOT EXISTS PHARMACOVIGILANCE.D_SILVER;
+CREATE SCHEMA IF NOT EXISTS PHARMACOVIGILANCE.D_GOLD;
+
+-- ============================================================
+-- Step 0.3: Create Warehouse
+-- XSMALL is sufficient for this workload; auto-suspend saves credits
+-- ============================================================
+CREATE WAREHOUSE IF NOT EXISTS PV_WH
+  WAREHOUSE_SIZE = 'XSMALL'
+  AUTO_SUSPEND = 60
+  AUTO_RESUME = TRUE;
+
+USE WAREHOUSE PV_WH;
+
+-- ============================================================
+-- Step 0.4: Create Roles
+-- Flat structure: all roles are direct children of ACCOUNTADMIN
+-- DSO: full PHI access | DATA_ENGINEER: pipeline access | PV_ANALYST: masked read
+-- ============================================================
+CREATE ROLE IF NOT EXISTS DRUG_SAFETY_OFFICER;
+CREATE ROLE IF NOT EXISTS DATA_ENGINEER;
+CREATE ROLE IF NOT EXISTS PV_ANALYST;
+
+-- Role hierarchy
+GRANT ROLE DRUG_SAFETY_OFFICER TO ROLE ACCOUNTADMIN;
+GRANT ROLE DATA_ENGINEER TO ROLE ACCOUNTADMIN;
+GRANT ROLE PV_ANALYST TO ROLE ACCOUNTADMIN;
+
+-- ============================================================
+-- Step 0.5: Permission Grants
+-- ============================================================
+
+-- DATA_ENGINEER: read/write on RAW, Bronze and Silver schemas (no Gold access)
+GRANT USAGE ON DATABASE PHARMACOVIGILANCE TO ROLE DATA_ENGINEER;
+GRANT USAGE ON SCHEMA PHARMACOVIGILANCE.D_RAW TO ROLE DATA_ENGINEER;
+GRANT USAGE ON SCHEMA PHARMACOVIGILANCE.D_BRONZE TO ROLE DATA_ENGINEER;
+GRANT USAGE ON SCHEMA PHARMACOVIGILANCE.D_SILVER TO ROLE DATA_ENGINEER;
+GRANT SELECT, INSERT, UPDATE ON FUTURE TABLES IN SCHEMA PHARMACOVIGILANCE.D_RAW TO ROLE DATA_ENGINEER;
+GRANT SELECT, INSERT, UPDATE ON FUTURE TABLES IN SCHEMA PHARMACOVIGILANCE.D_BRONZE TO ROLE DATA_ENGINEER;
+GRANT SELECT, INSERT, UPDATE ON FUTURE TABLES IN SCHEMA PHARMACOVIGILANCE.D_SILVER TO ROLE DATA_ENGINEER;
+GRANT USAGE ON WAREHOUSE PV_WH TO ROLE DATA_ENGINEER;
+
+-- PV_ANALYST: read-only on Silver + Gold (sees masked PHI data)
+GRANT USAGE ON DATABASE PHARMACOVIGILANCE TO ROLE PV_ANALYST;
+GRANT USAGE ON SCHEMA PHARMACOVIGILANCE.D_SILVER TO ROLE PV_ANALYST;
+GRANT USAGE ON SCHEMA PHARMACOVIGILANCE.D_GOLD TO ROLE PV_ANALYST;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA PHARMACOVIGILANCE.D_SILVER TO ROLE PV_ANALYST;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA PHARMACOVIGILANCE.D_GOLD TO ROLE PV_ANALYST;
+GRANT USAGE ON WAREHOUSE PV_WH TO ROLE PV_ANALYST;
+
+-- DRUG_SAFETY_OFFICER: read on Silver + Gold (sees unmasked PHI — authorized)
+GRANT USAGE ON DATABASE PHARMACOVIGILANCE TO ROLE DRUG_SAFETY_OFFICER;
+GRANT USAGE ON SCHEMA PHARMACOVIGILANCE.D_SILVER TO ROLE DRUG_SAFETY_OFFICER;
+GRANT USAGE ON SCHEMA PHARMACOVIGILANCE.D_GOLD TO ROLE DRUG_SAFETY_OFFICER;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA PHARMACOVIGILANCE.D_SILVER TO ROLE DRUG_SAFETY_OFFICER;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA PHARMACOVIGILANCE.D_GOLD TO ROLE DRUG_SAFETY_OFFICER;
+GRANT USAGE ON WAREHOUSE PV_WH TO ROLE DRUG_SAFETY_OFFICER;
+
+-- ============================================================
+-- Step 0.6: Verification
+-- ============================================================
+SELECT CURRENT_ACCOUNT() AS ACCOUNT, 
+       CURRENT_REGION() AS REGION, 
+       CURRENT_ROLE() AS ROLE;
+
+SHOW SCHEMAS IN DATABASE PHARMACOVIGILANCE;
