@@ -20,3 +20,6 @@ venv/
 
 # Snowflake connection configs (never commit credentials)
 connections.toml
+
+# Internal planning docs
+plans/

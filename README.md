@@ -96,8 +96,6 @@ drug_safety_copilot/
 ├── streamlit/
 │   └── app.py                       # 3-tab Streamlit dashboard application
 ├── semantic_model.yaml              # Cortex Analyst semantic model definition
-├── plans/
-│   └── plan_2026-05-05_2202.md      # Implementation plan
 ├── docs/
 │   ├── architecture.png             # Architecture diagram
 │   ├── ai_agent.png                 # AI Agent Chat screenshot
