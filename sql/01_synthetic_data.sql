@@ -64,7 +64,7 @@ DECLARE
     batch_inserted INT;
 BEGIN
     WHILE (i < :BATCH_COUNT) DO
-        llm_result := (SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-haiku',
+        llm_result := (SELECT SNOWFLAKE.CORTEX.COMPLETE('claude-4-sonnet',
 'You are a pharmacovigilance data specialist generating realistic FDA FAERS-style adverse event records.
 
 Generate exactly 50 synthetic adverse event case reports as a JSON array. Each record must follow these rules:
@@ -210,7 +210,7 @@ BEGIN
     WHILE (i < :BATCH_SIZE) DO
         INSERT INTO D_RAW.AE_NARRATIVES (CASE_ID, NARRATIVE_TEXT)
         SELECT CASE_ID,
-            SNOWFLAKE.CORTEX.COMPLETE('claude-3-5-haiku',
+            SNOWFLAKE.CORTEX.COMPLETE('claude-4-sonnet',
 'You are a clinical safety physician writing a formal CIOMS-style adverse event narrative for an Individual Case Safety Report (ICSR).
 
 Write a 250-350 word clinical narrative for this case:

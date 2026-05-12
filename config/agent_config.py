@@ -10,7 +10,7 @@ Used by the Streamlit app and can also be invoked via Snowflake Intelligence UI.
 """
 
 AGENT_CONFIG = {
-    "model": "claude-3-5-sonnet",
+    "model": "claude-4-sonnet",
     "tools": [
         {
             "tool_spec": {
