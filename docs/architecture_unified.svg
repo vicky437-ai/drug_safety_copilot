@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="1600" height="1100" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 990" width="1600" height="990" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" style="stop-color:#FAFBFC;stop-opacity:1" />
@@ -52,7 +52,7 @@
   </defs>
 
   <!-- Background -->
-  <rect width="1600" height="1100" fill="url(#bgGrad)"/>
+  <rect width="1600" height="990" fill="url(#bgGrad)"/>
 
   <!-- ================================================================ -->
   <!-- HEADER -->
@@ -76,7 +76,7 @@
 
   <!-- Industry-standard pharma heading -->
   <text x="800" y="36" text-anchor="middle" font-size="21" font-weight="700" fill="#1A237E" letter-spacing="0.3">Integrated Safety Signal Management Platform</text>
-  <text x="800" y="56" text-anchor="middle" font-size="13" fill="#37474F" letter-spacing="0.5">End-to-End ICSR Processing | Automated Signal Detection | Regulatory Compliance (21 CFR Part 11)</text>
+  <text x="800" y="56" text-anchor="middle" font-size="13" fill="#37474F" letter-spacing="0.5">End-to-End ICSR Processing | Automated Signal Detection | Regulatory Compliance (21 CFR §314.81)</text>
   <text x="800" y="74" text-anchor="middle" font-size="10" fill="#78909C" letter-spacing="1">SNOWFLAKE-NATIVE  |  ZERO DATA EGRESS  |  GxP-READY</text>
 
   <!-- ================================================================ -->
@@ -141,7 +141,7 @@
   <rect x="225" y="333" width="92" height="20" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
   <text x="271" y="347" text-anchor="middle" font-size="7.5" fill="#E65100">CLASSIFIED_EVENTS</text>
   <rect x="323" y="333" width="92" height="20" rx="4" fill="#FFFFFF" stroke="#FF9800" stroke-width="1"/>
-  <text x="369" y="347" text-anchor="middle" font-size="7.5" fill="#E65100">ENRICHED_NARRATIVES</text>
+  <text x="369" y="347" text-anchor="middle" font-size="7.5" fill="#E65100">BRONZE_NARRATIVES</text>
   <!-- AI function pills -->
   <rect x="225" y="362" width="58" height="16" rx="8" fill="#E65100" opacity="0.85"/>
   <text x="254" y="374" text-anchor="middle" font-size="7" fill="#FFFFFF">AI_CLASSIFY</text>
@@ -240,6 +240,11 @@
   <line x1="430" y1="550" x2="478" y2="550" stroke="#F57F17" stroke-width="1.3" stroke-dasharray="4,3"/>
   <line x1="478" y1="550" x2="478" y2="472" stroke="#F57F17" stroke-width="1.3" stroke-dasharray="4,3"/>
   <line x1="478" y1="472" x2="490" y2="472" stroke="#F57F17" stroke-width="1.3" marker-end="url(#arrowOrange)"/>
+
+  <!-- Silver → Streamlit (Phase 1) -->
+  <line x1="430" y1="565" x2="486" y2="565" stroke="#1565C0" stroke-width="1.3" stroke-dasharray="4,3"/>
+  <line x1="486" y1="565" x2="486" y2="552" stroke="#1565C0" stroke-width="1.3" stroke-dasharray="4,3"/>
+  <line x1="486" y1="552" x2="490" y2="552" stroke="#1565C0" stroke-width="1.3" marker-end="url(#arrowBlue)"/>
 
   <!-- ================================================================ -->
   <!-- PHASE 2 — RIGHT HALF -->
@@ -363,7 +368,7 @@
   <rect x="1300" y="372" width="220" height="8" fill="#F57F17"/>
   <text x="1410" y="375" text-anchor="middle" font-size="10" font-weight="600" fill="#FFFFFF">Unified PRR Signal Detection</text>
   <text x="1410" y="396" text-anchor="middle" font-size="8.5" fill="#E65100">FAERS + Call Center AEs Combined</text>
-  <text x="1410" y="410" text-anchor="middle" font-size="7.5" fill="#546E7A">PRR > 2.0 across 111 unified records</text>
+  <text x="1410" y="410" text-anchor="middle" font-size="7.5" fill="#546E7A">PRR > 2.0 | FAERS + Call Center combined</text>
   <text x="1410" y="424" text-anchor="middle" font-size="7.5" fill="#546E7A">Cross-source signals missed by FAERS alone</text>
 
   <!-- PharmaCX Streamlit -->
@@ -388,155 +393,164 @@
   <line x1="1288" y1="590" x2="1288" y2="396" stroke="#F57F17" stroke-width="1.3" stroke-dasharray="4,3"/>
   <line x1="1288" y1="396" x2="1300" y2="396" stroke="#F57F17" stroke-width="1.3" marker-end="url(#arrowOrange)"/>
 
+  <!-- Silver → Streamlit (Phase 2) -->
+  <line x1="1240" y1="604" x2="1296" y2="604" stroke="#1565C0" stroke-width="1.3" stroke-dasharray="4,3"/>
+  <line x1="1296" y1="604" x2="1296" y2="482" stroke="#1565C0" stroke-width="1.3" stroke-dasharray="4,3"/>
+  <line x1="1296" y1="482" x2="1300" y2="482" stroke="#1565C0" stroke-width="1.3" marker-end="url(#arrowBlue)"/>
+
   <!-- ================================================================ -->
-  <!-- CROSS-PHASE CONVERGENCE -->
+  <!-- CROSS-PHASE CONVERGENCE (prominent shared database band) -->
   <!-- ================================================================ -->
-  <rect x="720" y="530" width="160" height="36" rx="18" fill="#EDE7F6" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="6,3" filter="url(#shadow)"/>
-  <text x="800" y="546" text-anchor="middle" font-size="8.5" font-weight="600" fill="#4A148C">SHARED DATABASE</text>
-  <text x="800" y="559" text-anchor="middle" font-size="7.5" fill="#6A1B9A">PHARMACOVIGILANCE</text>
-  <line x1="710" y1="548" x2="720" y2="548" stroke="#6A1B9A" stroke-width="1.3" stroke-dasharray="3,2" marker-end="url(#arrowPurple)"/>
-  <line x1="880" y1="548" x2="870" y2="548" stroke="#6A1B9A" stroke-width="1.3" stroke-dasharray="3,2"/>
-  <path d="M866,544 L876,548 L866,552 z" fill="#6A1B9A"/>
+  <rect x="660" y="622" width="280" height="40" rx="8" fill="#EDE7F6" stroke="#6A1B9A" stroke-width="2" stroke-dasharray="8,4" filter="url(#shadowLg)"/>
+  <text x="800" y="639" text-anchor="middle" font-size="10" font-weight="700" fill="#4A148C">SHARED DATABASE: PHARMACOVIGILANCE</text>
+  <text x="800" y="654" text-anchor="middle" font-size="8" fill="#6A1B9A">Single source of truth | Both pipelines converge | Unified PRR</text>
+  <!-- Left arrow from Phase 1 -->
+  <line x1="600" y1="600" x2="600" y2="642" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="600" y1="642" x2="660" y2="642" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowPurple)"/>
+  <!-- Right arrow from Phase 2 -->
+  <line x1="1130" y1="614" x2="1130" y2="642" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="1130" y1="642" x2="940" y2="642" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <path d="M944,638 L934,642 L944,646 z" fill="#6A1B9A"/>
 
   <!-- ================================================================ -->
   <!-- GOVERNANCE BAND -->
   <!-- ================================================================ -->
-  <rect x="40" y="640" width="1520" height="95" rx="8" fill="#FFFFFF" stroke="#6A1B9A" stroke-width="1.5" filter="url(#shadowLg)"/>
-  <rect x="40" y="640" width="1520" height="28" rx="8" fill="#6A1B9A"/>
-  <rect x="40" y="658" width="1520" height="10" fill="#6A1B9A"/>
+  <rect x="40" y="675" width="1520" height="100" rx="8" fill="#FFFFFF" stroke="#6A1B9A" stroke-width="1.5" filter="url(#shadowLg)"/>
+  <rect x="40" y="675" width="1520" height="28" rx="8" fill="#6A1B9A"/>
+  <rect x="40" y="693" width="1520" height="10" fill="#6A1B9A"/>
   <!-- Shield icon -->
-  <path d="M56,645 L56,660 Q56,665 65,668 Q74,665 74,660 L74,645 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
-  <text x="800" y="660" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1">DATA GOVERNANCE  |  SECURITY  |  OBSERVABILITY</text>
+  <path d="M56,680 L56,695 Q56,700 65,703 Q74,700 74,695 L74,680 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+  <text x="800" y="695" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1">DATA GOVERNANCE  |  SECURITY  |  OBSERVABILITY</text>
 
   <!-- 6 governance pillars -->
-  <rect x="60" y="678" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
-  <text x="165" y="694" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">SYSTEM$CLASSIFY</text>
-  <text x="165" y="707" text-anchor="middle" font-size="7.5" fill="#546E7A">Auto PHI/PII detection</text>
-  <text x="165" y="718" text-anchor="middle" font-size="7.5" fill="#546E7A">HIPAA_CATEGORY tags</text>
+  <rect x="60" y="713" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
+  <text x="165" y="729" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">SYSTEM$CLASSIFY</text>
+  <text x="165" y="742" text-anchor="middle" font-size="7.5" fill="#546E7A">Auto PHI/PII detection</text>
+  <text x="165" y="753" text-anchor="middle" font-size="7.5" fill="#546E7A">HIPAA_CATEGORY tags</text>
 
-  <rect x="290" y="678" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
-  <text x="395" y="694" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">Dynamic Data Masking</text>
-  <text x="395" y="707" text-anchor="middle" font-size="7.5" fill="#546E7A">MASK_PATIENT_ID | MASK_DOB</text>
-  <text x="395" y="718" text-anchor="middle" font-size="7.5" fill="#546E7A">Role-based PHI redaction</text>
+  <rect x="290" y="713" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
+  <text x="395" y="729" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">Dynamic Data Masking</text>
+  <text x="395" y="742" text-anchor="middle" font-size="7.5" fill="#546E7A">MASK_PATIENT_ID | MASK_DOB</text>
+  <text x="395" y="753" text-anchor="middle" font-size="7.5" fill="#546E7A">Role-based PHI redaction</text>
 
-  <rect x="520" y="678" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
-  <text x="625" y="694" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">Data Metric Functions</text>
-  <text x="625" y="707" text-anchor="middle" font-size="7.5" fill="#546E7A">NULL_COUNT | ROW_COUNT</text>
-  <text x="625" y="718" text-anchor="middle" font-size="7.5" fill="#546E7A">Continuous freshness monitoring</text>
+  <rect x="520" y="713" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
+  <text x="625" y="729" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">Data Metric Functions</text>
+  <text x="625" y="742" text-anchor="middle" font-size="7.5" fill="#546E7A">NULL_COUNT | ROW_COUNT</text>
+  <text x="625" y="753" text-anchor="middle" font-size="7.5" fill="#546E7A">Continuous freshness monitoring</text>
 
-  <rect x="750" y="678" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
-  <text x="855" y="694" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">SSE Stage Encryption</text>
-  <text x="855" y="707" text-anchor="middle" font-size="7.5" fill="#546E7A">SNOWFLAKE_SSE on all stages</text>
-  <text x="855" y="718" text-anchor="middle" font-size="7.5" fill="#546E7A">At-rest encryption for media</text>
+  <rect x="750" y="713" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
+  <text x="855" y="729" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">SSE Stage Encryption</text>
+  <text x="855" y="742" text-anchor="middle" font-size="7.5" fill="#546E7A">SNOWFLAKE_SSE on all stages</text>
+  <text x="855" y="753" text-anchor="middle" font-size="7.5" fill="#546E7A">At-rest encryption for media</text>
 
-  <rect x="980" y="678" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
-  <text x="1085" y="694" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">AI Observability</text>
-  <text x="1085" y="707" text-anchor="middle" font-size="7.5" fill="#546E7A">AI function call telemetry</text>
-  <text x="1085" y="718" text-anchor="middle" font-size="7.5" fill="#546E7A">Error rate | Latency | Token usage</text>
+  <rect x="980" y="713" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
+  <text x="1085" y="729" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">AI Observability</text>
+  <text x="1085" y="742" text-anchor="middle" font-size="7.5" fill="#546E7A">AI function call telemetry</text>
+  <text x="1085" y="753" text-anchor="middle" font-size="7.5" fill="#546E7A">Error rate | Latency | Token usage</text>
 
-  <rect x="1210" y="678" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
-  <text x="1315" y="694" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">Multi-Tier RBAC</text>
-  <text x="1315" y="707" text-anchor="middle" font-size="7.5" fill="#546E7A">DSO | PV_Analyst | CX_Quality | CX_Supervisor</text>
-  <text x="1315" y="718" text-anchor="middle" font-size="7.5" fill="#546E7A">Least-privilege | Schema-level grants</text>
+  <rect x="1210" y="713" width="210" height="44" rx="5" fill="#F3E5F5" stroke="#8E24AA" stroke-width="1"/>
+  <text x="1315" y="729" text-anchor="middle" font-size="9" font-weight="600" fill="#6A1B9A">Multi-Tier RBAC</text>
+  <text x="1315" y="742" text-anchor="middle" font-size="7.5" fill="#546E7A">DSO | PV_Analyst | CX_Quality | CX_Supervisor</text>
+  <text x="1315" y="753" text-anchor="middle" font-size="7.5" fill="#546E7A">Least-privilege | Schema-level grants</text>
 
   <!-- ================================================================ -->
   <!-- SNOWFLAKE CAPABILITIES BAND -->
   <!-- ================================================================ -->
-  <rect x="40" y="750" width="1520" height="48" rx="6" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1" filter="url(#shadow)"/>
-  <text x="60" y="778" font-size="9" font-weight="700" fill="#455A64">PLATFORM CAPABILITIES:</text>
+  <rect x="40" y="790" width="1520" height="48" rx="6" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="818" font-size="9" font-weight="700" fill="#455A64">PLATFORM CAPABILITIES:</text>
 
-  <rect x="210" y="764" width="110" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
-  <text x="265" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Dynamic Tables</text>
+  <rect x="210" y="804" width="110" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="265" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Dynamic Tables</text>
 
-  <rect x="328" y="764" width="100" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
-  <text x="378" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Cortex Search</text>
+  <rect x="328" y="804" width="100" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="378" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Cortex Search</text>
 
-  <rect x="436" y="764" width="100" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
-  <text x="486" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Cortex Analyst</text>
+  <rect x="436" y="804" width="100" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="486" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Cortex Analyst</text>
 
-  <rect x="544" y="764" width="95" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
-  <text x="591" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Cortex Agent</text>
+  <rect x="544" y="804" width="95" height="24" rx="12" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="591" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#1565C0">Cortex Agent</text>
 
-  <rect x="647" y="764" width="86" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
-  <text x="690" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_CLASSIFY</text>
+  <rect x="647" y="804" width="86" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="690" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_CLASSIFY</text>
 
-  <rect x="741" y="764" width="82" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
-  <text x="782" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_EXTRACT</text>
+  <rect x="741" y="804" width="82" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="782" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_EXTRACT</text>
 
-  <rect x="831" y="764" width="92" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
-  <text x="877" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_SENTIMENT</text>
+  <rect x="831" y="804" width="92" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="877" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_SENTIMENT</text>
 
-  <rect x="931" y="764" width="98" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
-  <text x="980" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_TRANSCRIBE</text>
+  <rect x="931" y="804" width="98" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="980" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_TRANSCRIBE</text>
 
-  <rect x="1037" y="764" width="108" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
-  <text x="1091" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_COMPLETE</text>
+  <rect x="1037" y="804" width="108" height="24" rx="12" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="1091" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#BF360C">AI_COMPLETE</text>
 
-  <rect x="1153" y="764" width="100" height="24" rx="12" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
-  <text x="1203" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#1B5E20">Streamlit in SF</text>
+  <rect x="1153" y="804" width="100" height="24" rx="12" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="1203" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#1B5E20">Streamlit in SF</text>
 
-  <rect x="1261" y="764" width="95" height="24" rx="12" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
-  <text x="1308" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#4A148C">Data Masking</text>
+  <rect x="1261" y="804" width="95" height="24" rx="12" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="1308" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#4A148C">Data Masking</text>
 
-  <rect x="1364" y="764" width="95" height="24" rx="12" fill="#E0F7FA" stroke="#00838F" stroke-width="1"/>
-  <text x="1411" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#006064">CRON Tasks</text>
+  <rect x="1364" y="804" width="95" height="24" rx="12" fill="#E0F7FA" stroke="#00838F" stroke-width="1"/>
+  <text x="1411" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#006064">CRON Tasks</text>
 
-  <rect x="1467" y="764" width="75" height="24" rx="12" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
-  <text x="1504" y="780" text-anchor="middle" font-size="8" font-weight="600" fill="#4A148C">RBAC</text>
+  <rect x="1467" y="804" width="75" height="24" rx="12" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="1504" y="820" text-anchor="middle" font-size="8" font-weight="600" fill="#4A148C">RBAC</text>
 
   <!-- ================================================================ -->
   <!-- METRICS BAR -->
   <!-- ================================================================ -->
-  <rect x="40" y="812" width="1520" height="42" rx="6" fill="#263238" filter="url(#shadow)"/>
+  <rect x="40" y="852" width="1520" height="42" rx="6" fill="#263238" filter="url(#shadow)"/>
 
-  <text x="160" y="833" text-anchor="middle" font-size="20" font-weight="700" fill="#29B5E8">15+</text>
-  <text x="160" y="848" text-anchor="middle" font-size="9" fill="#B0BEC5">Snowflake Features</text>
-  <line x1="300" y1="820" x2="300" y2="848" stroke="#37474F" stroke-width="1"/>
+  <text x="160" y="873" text-anchor="middle" font-size="20" font-weight="700" fill="#29B5E8">15+</text>
+  <text x="160" y="888" text-anchor="middle" font-size="9" fill="#B0BEC5">Snowflake Features</text>
+  <line x1="300" y1="860" x2="300" y2="888" stroke="#37474F" stroke-width="1"/>
 
-  <text x="420" y="833" text-anchor="middle" font-size="20" font-weight="700" fill="#FF9800">4</text>
-  <text x="420" y="848" text-anchor="middle" font-size="9" fill="#B0BEC5">Medallion Layers</text>
-  <line x1="540" y1="820" x2="540" y2="848" stroke="#37474F" stroke-width="1"/>
+  <text x="420" y="873" text-anchor="middle" font-size="20" font-weight="700" fill="#FF9800">4×2</text>
+  <text x="420" y="888" text-anchor="middle" font-size="9" fill="#B0BEC5">Medallion Tiers</text>
+  <line x1="540" y1="860" x2="540" y2="888" stroke="#37474F" stroke-width="1"/>
 
-  <text x="660" y="833" text-anchor="middle" font-size="20" font-weight="700" fill="#EF5350">15-Day</text>
-  <text x="660" y="848" text-anchor="middle" font-size="9" fill="#B0BEC5">FDA Reporting Clock</text>
-  <line x1="790" y1="820" x2="790" y2="848" stroke="#37474F" stroke-width="1"/>
+  <text x="660" y="873" text-anchor="middle" font-size="20" font-weight="700" fill="#EF5350">15-Day</text>
+  <text x="660" y="888" text-anchor="middle" font-size="9" fill="#B0BEC5">FDA Reporting Clock</text>
+  <line x1="790" y1="860" x2="790" y2="888" stroke="#37474F" stroke-width="1"/>
 
-  <text x="910" y="833" text-anchor="middle" font-size="20" font-weight="700" fill="#4CAF50">Zero</text>
-  <text x="910" y="848" text-anchor="middle" font-size="9" fill="#B0BEC5">External Dependencies</text>
-  <line x1="1040" y1="820" x2="1040" y2="848" stroke="#37474F" stroke-width="1"/>
+  <text x="910" y="873" text-anchor="middle" font-size="20" font-weight="700" fill="#4CAF50">Zero</text>
+  <text x="910" y="888" text-anchor="middle" font-size="9" fill="#B0BEC5">External Dependencies</text>
+  <line x1="1040" y1="860" x2="1040" y2="888" stroke="#37474F" stroke-width="1"/>
 
-  <text x="1160" y="833" text-anchor="middle" font-size="20" font-weight="700" fill="#80DEEA">Zero</text>
-  <text x="1160" y="848" text-anchor="middle" font-size="9" fill="#B0BEC5">Data Egress</text>
-  <line x1="1290" y1="820" x2="1290" y2="848" stroke="#37474F" stroke-width="1"/>
+  <text x="1160" y="873" text-anchor="middle" font-size="20" font-weight="700" fill="#80DEEA">Zero</text>
+  <text x="1160" y="888" text-anchor="middle" font-size="9" fill="#B0BEC5">Data Egress</text>
+  <line x1="1290" y1="860" x2="1290" y2="888" stroke="#37474F" stroke-width="1"/>
 
-  <text x="1430" y="833" text-anchor="middle" font-size="20" font-weight="700" fill="#CE93D8">111</text>
-  <text x="1430" y="848" text-anchor="middle" font-size="9" fill="#B0BEC5">Unified AE Records</text>
+  <text x="1430" y="873" text-anchor="middle" font-size="20" font-weight="700" fill="#CE93D8">2</text>
+  <text x="1430" y="888" text-anchor="middle" font-size="9" fill="#B0BEC5">Unified Pipelines</text>
 
   <!-- ================================================================ -->
   <!-- LEGEND -->
   <!-- ================================================================ -->
-  <rect x="40" y="868" width="1520" height="40" rx="6" fill="#FFFFFF" stroke="#CFD8DC" stroke-width="1"/>
-  <text x="70" y="892" font-size="9" font-weight="600" fill="#455A64">LEGEND:</text>
-  <rect x="130" y="882" width="14" height="14" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
-  <text x="150" y="893" font-size="8" fill="#455A64">RAW (Ingestion)</text>
-  <rect x="248" y="882" width="14" height="14" rx="3" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
-  <text x="268" y="893" font-size="8" fill="#455A64">BRONZE (AI Enrichment)</text>
-  <rect x="395" y="882" width="14" height="14" rx="3" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
-  <text x="415" y="893" font-size="8" fill="#455A64">SILVER (Curated/CDC)</text>
-  <rect x="535" y="882" width="14" height="14" rx="3" fill="#FFF8E1" stroke="#F57F17" stroke-width="1"/>
-  <text x="555" y="893" font-size="8" fill="#455A64">GOLD (Intelligence)</text>
-  <rect x="665" y="882" width="14" height="14" rx="3" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
-  <text x="685" y="893" font-size="8" fill="#455A64">Governance</text>
-  <line x1="760" y1="889" x2="800" y2="889" stroke="#455A64" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <text x="810" y="893" font-size="8" fill="#455A64">Data Flow</text>
-  <rect x="875" y="882" width="14" height="14" rx="3" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2"/>
-  <text x="895" y="893" font-size="8" fill="#455A64">Regulatory / Critical</text>
-  <rect x="1005" y="882" width="14" height="14" rx="3" fill="#EDE7F6" stroke="#6A1B9A" stroke-width="1.2" stroke-dasharray="4,2"/>
-  <text x="1025" y="893" font-size="8" fill="#455A64">Cross-Phase Shared</text>
+  <rect x="40" y="908" width="1520" height="40" rx="6" fill="#FFFFFF" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="70" y="932" font-size="9" font-weight="600" fill="#455A64">LEGEND:</text>
+  <rect x="130" y="922" width="14" height="14" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1"/>
+  <text x="150" y="933" font-size="8" fill="#455A64">RAW (Ingestion)</text>
+  <rect x="248" y="922" width="14" height="14" rx="3" fill="#FFF3E0" stroke="#E65100" stroke-width="1"/>
+  <text x="268" y="933" font-size="8" fill="#455A64">BRONZE (AI Enrichment)</text>
+  <rect x="395" y="922" width="14" height="14" rx="3" fill="#E3F2FD" stroke="#1565C0" stroke-width="1"/>
+  <text x="415" y="933" font-size="8" fill="#455A64">SILVER (Curated/CDC)</text>
+  <rect x="535" y="922" width="14" height="14" rx="3" fill="#FFF8E1" stroke="#F57F17" stroke-width="1"/>
+  <text x="555" y="933" font-size="8" fill="#455A64">GOLD (Intelligence)</text>
+  <rect x="665" y="922" width="14" height="14" rx="3" fill="#F3E5F5" stroke="#6A1B9A" stroke-width="1"/>
+  <text x="685" y="933" font-size="8" fill="#455A64">Governance</text>
+  <line x1="760" y1="929" x2="800" y2="929" stroke="#455A64" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="810" y="933" font-size="8" fill="#455A64">Data Flow</text>
+  <rect x="875" y="922" width="14" height="14" rx="3" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2"/>
+  <text x="895" y="933" font-size="8" fill="#455A64">Regulatory / Critical</text>
+  <rect x="1005" y="922" width="14" height="14" rx="3" fill="#EDE7F6" stroke="#6A1B9A" stroke-width="1.2" stroke-dasharray="4,2"/>
+  <text x="1025" y="933" font-size="8" fill="#455A64">Cross-Phase Shared</text>
 
   <!-- ================================================================ -->
   <!-- FOOTER -->
   <!-- ================================================================ -->
-  <text x="800" y="930" text-anchor="middle" font-size="10" fill="#78909C">Venkannababu Thatavarthi (Vicky)  |  Integrated Safety Signal Management Platform  |  Confidential</text>
-  <rect x="0" y="938" width="1600" height="4" fill="#29B5E8"/>
+  <text x="800" y="970" text-anchor="middle" font-size="10" fill="#78909C">Venkannababu Thatavarthi (Vicky)  |  Integrated Safety Signal Management Platform  |  Confidential</text>
+  <rect x="0" y="978" width="1600" height="4" fill="#29B5E8"/>
 </svg>

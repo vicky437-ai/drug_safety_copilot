@@ -1,6 +1,6 @@
 # Integrated Safety Signal Management Platform
 
-**End-to-End ICSR Processing | Automated Signal Detection | Regulatory Compliance (21 CFR Part 11)**
+**End-to-End ICSR Processing | Automated Signal Detection | Regulatory Compliance (21 CFR §314.81)**
 
 Snowflake-Native | Zero Data Egress | GxP-Ready
 
